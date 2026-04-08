@@ -40,12 +40,73 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "SEO snapshot response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
+  "200": {
+    "description": "SEO snapshot response",
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "clientDomain": {
+              "type": "string"
+            },
+            "summary": {
+              "type": "object",
+              "properties": {
+                "totalKeywordsAnalyzed": { "type": "number" },
+                "cannibalizationCount": { "type": "number" },
+                "quickWinCount": { "type": "number" },
+                "topDropsCount": { "type": "number" }
+              }
+            },
+            "topDrops": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "keyword": { "type": "string" },
+                  "position": { "type": "number" },
+                  "volume": { "type": "number" },
+                  "url": { "type": "string" },
+                  "intentBucket": { "type": "string" }
+                }
+              }
+            },
+            "quickWins": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "keyword": { "type": "string" },
+                  "position": { "type": "number" },
+                  "url": { "type": "string" },
+                  "volume": { "type": "number" },
+                  "intentBucket": { "type": "string" },
+                  "reason": { "type": "string" }
+                }
+              }
+            },
+            "cannibalizationCases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "keyword": { "type": "string" },
+                  "urls": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "recommendedPrimaryUrl": { "type": "string" },
+                  "reason": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
                 }
               }
             }
